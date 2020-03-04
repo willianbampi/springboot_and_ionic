@@ -77,3 +77,5 @@
 /.metadata/.plugins/org.eclipse.m2e.core/nexus/830bc118332e77292949ed1e6d2fabe0/_2.cfs
 /.metadata/.plugins/org.eclipse.m2e.core/nexus/830bc118332e77292949ed1e6d2fabe0/segments_4
 /.metadata/.plugins/org.eclipse.ui.ide/dialog_settings.xml
+/.metadata/
+/.sonarlint/default/.sonartmp_8137150699157300776/sonarlint-slf4j-sonar-log9637573917678464396.jar
