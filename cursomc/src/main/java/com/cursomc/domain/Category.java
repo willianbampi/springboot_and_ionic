@@ -8,23 +8,23 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Categoria implements Serializable {
+public class Category implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String nome;
+	private String name;
 	
-	public Categoria() {
+	public Category() {
 	
 	}
 
-	public Categoria(Integer id, String nome) {
+	public Category(Integer id, String name) {
 		super();
 		this.id = id;
-		this.nome = nome;
+		this.name = name;
 	}
 
 	public Integer getId() {
@@ -34,15 +34,15 @@ public class Categoria implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-	public String getNome() {
-		return nome;
+	
+	public String getName() {
+		return name;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -59,7 +59,7 @@ public class Categoria implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Categoria other = (Categoria) obj;
+		Category other = (Category) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -67,5 +67,5 @@ public class Categoria implements Serializable {
 			return false;
 		return true;
 	}
-	
+
 }
