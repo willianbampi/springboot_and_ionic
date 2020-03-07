@@ -8,8 +8,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.cursomc.domain.Category;
+import com.cursomc.domain.City;
+import com.cursomc.domain.FederativeUnity;
 import com.cursomc.domain.Product;
 import com.cursomc.repositories.CategoryRepository;
+import com.cursomc.repositories.CityRepository;
+import com.cursomc.repositories.FederativeUnityRepository;
 import com.cursomc.repositories.ProductRepository;
 
 @SpringBootApplication
@@ -20,6 +24,12 @@ public class CursomcApplication implements CommandLineRunner {
 	
 	@Autowired
 	private ProductRepository productRepository;
+	
+	@Autowired
+	private CityRepository cityRepository;
+	
+	@Autowired
+	private FederativeUnityRepository federativeUnityRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
@@ -44,6 +54,19 @@ public class CursomcApplication implements CommandLineRunner {
 		
 		categoryRepository.saveAll(Arrays.asList(category1, category2));
 		productRepository.saveAll(Arrays.asList(product1, product2, product3));
+		
+		FederativeUnity federativeUnity1 = new FederativeUnity(null, "Minas Gerais");
+		FederativeUnity federativeUnity2 = new FederativeUnity(null, "São Paulo");
+		
+		City city1 = new City(null, "Uberlândia", federativeUnity1); 
+		City city2 = new City(null, "São Paulo", federativeUnity2); 
+		City city3 = new City(null, "Campinas", federativeUnity2);
+		
+		federativeUnity1.getCities().addAll(Arrays.asList(city1));
+		federativeUnity2.getCities().addAll(Arrays.asList(city2, city3));
+		
+		federativeUnityRepository.saveAll(Arrays.asList(federativeUnity1, federativeUnity2));
+		cityRepository.saveAll(Arrays.asList(city1, city2, city3));
 		
 	}
 

@@ -8,14 +8,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 @Entity
-@Table(name="CATEGORY")
-public class Category implements Serializable {
+@Table(name="FEDERATIVE_UNITY")
+public class FederativeUnity implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -24,15 +23,14 @@ public class Category implements Serializable {
 	
 	private String name;
 	
-	@JsonManagedReference
-	@ManyToMany(mappedBy = "categories")
-	private List<Product> products = new ArrayList<>();
-	
-	public Category() {
-	
-	}
+	@OneToMany(mappedBy = "federativeUnity")
+	private List<City> cities = new ArrayList<>();
 
-	public Category(Integer id, String name) {
+	public FederativeUnity() {
+		
+	}
+	
+	public FederativeUnity(Integer id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -45,7 +43,7 @@ public class Category implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -53,15 +51,15 @@ public class Category implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public List<Product> getProducts() {
-		return products;
+
+	public List<City> getCities() {
+		return cities;
 	}
 
-	public void setProducts(List<Product> products) {
-		this.products = products;
+	public void setCities(List<City> cities) {
+		this.cities = cities;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -78,7 +76,7 @@ public class Category implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Category other = (Category) obj;
+		FederativeUnity other = (FederativeUnity) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -86,5 +84,5 @@ public class Category implements Serializable {
 			return false;
 		return true;
 	}
-
+	
 }

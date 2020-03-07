@@ -1,21 +1,19 @@
 package com.cursomc.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 @Entity
-@Table(name="CATEGORY")
-public class Category implements Serializable {
+@Table(name="CITY")
+public class City implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -24,18 +22,19 @@ public class Category implements Serializable {
 	
 	private String name;
 	
-	@JsonManagedReference
-	@ManyToMany(mappedBy = "categories")
-	private List<Product> products = new ArrayList<>();
+	@ManyToOne
+	@JoinColumn(name="FEDERATIVE_UNITY_ID")
+	private FederativeUnity federativeUnity;
 	
-	public Category() {
-	
+	public City() {
+		
 	}
-
-	public Category(Integer id, String name) {
+	
+	public City(Integer id, String name, FederativeUnity federativeUnity) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.federativeUnity = federativeUnity;
 	}
 
 	public Integer getId() {
@@ -45,7 +44,7 @@ public class Category implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -53,15 +52,15 @@ public class Category implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public List<Product> getProducts() {
-		return products;
+
+	public FederativeUnity getFederativeUnity() {
+		return federativeUnity;
 	}
 
-	public void setProducts(List<Product> products) {
-		this.products = products;
+	public void setFederativeUnity(FederativeUnity federativeUnity) {
+		this.federativeUnity = federativeUnity;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -78,7 +77,7 @@ public class Category implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Category other = (Category) obj;
+		City other = (City) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -86,5 +85,5 @@ public class Category implements Serializable {
 			return false;
 		return true;
 	}
-
+	
 }
