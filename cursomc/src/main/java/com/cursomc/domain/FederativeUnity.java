@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "FEDERATIVE_UNITY")
 public class FederativeUnity implements Serializable {
@@ -23,6 +25,7 @@ public class FederativeUnity implements Serializable {
 	
 	private String name;
 	
+	@JsonBackReference
 	@OneToMany(mappedBy = "federativeUnity")
 	private List<City> cities = new ArrayList<>();
 
