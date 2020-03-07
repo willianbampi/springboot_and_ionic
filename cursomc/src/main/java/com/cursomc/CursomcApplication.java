@@ -7,12 +7,17 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.cursomc.domain.Address;
 import com.cursomc.domain.Category;
 import com.cursomc.domain.City;
+import com.cursomc.domain.Client;
 import com.cursomc.domain.FederativeUnity;
 import com.cursomc.domain.Product;
+import com.cursomc.domain.enums.ClientType;
+import com.cursomc.repositories.AddressRepository;
 import com.cursomc.repositories.CategoryRepository;
 import com.cursomc.repositories.CityRepository;
+import com.cursomc.repositories.ClientRepository;
 import com.cursomc.repositories.FederativeUnityRepository;
 import com.cursomc.repositories.ProductRepository;
 
@@ -30,6 +35,12 @@ public class CursomcApplication implements CommandLineRunner {
 	
 	@Autowired
 	private FederativeUnityRepository federativeUnityRepository;
+	
+	@Autowired
+	private ClientRepository clientRepository;
+	
+	@Autowired
+	private AddressRepository addressRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
@@ -67,6 +78,17 @@ public class CursomcApplication implements CommandLineRunner {
 		
 		federativeUnityRepository.saveAll(Arrays.asList(federativeUnity1, federativeUnity2));
 		cityRepository.saveAll(Arrays.asList(city1, city2, city3));
+		
+		Client client1 = new Client(null, "Maria Silva", "maria@gmail.com", "36378912377", ClientType.PESSOAFISICA);
+		client1.getPhones().addAll(Arrays.asList("27363323", "93838393"));
+		
+		Address address1 = new Address(null, "Rua Flores", "300", "Apto 303", "Jardeim", "38220834", client1, city1);
+		Address address2 = new Address(null, "Avenida Matos", "105", "Sala 800", "Centro", "38777012", client1, city2);
+		
+		client1.getAddresses().addAll(Arrays.asList(address1, address2));
+		
+		clientRepository.saveAll(Arrays.asList(client1));
+		addressRepository.saveAll(Arrays.asList(address1, address2));
 		
 	}
 

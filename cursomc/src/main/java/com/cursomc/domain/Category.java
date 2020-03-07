@@ -14,7 +14,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-@Table(name="CATEGORY")
+@Table(name = "CATEGORY")
 public class Category implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -55,6 +55,9 @@ public class Category implements Serializable {
 	}
 	
 	public List<Product> getProducts() {
+		if(products == null) {
+			return new ArrayList<>();
+		}
 		return products;
 	}
 

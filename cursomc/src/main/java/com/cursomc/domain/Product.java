@@ -16,7 +16,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
-@Table(name="PRODUCT")
+@Table(name = "PRODUCT")
 public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -72,6 +72,9 @@ public class Product implements Serializable {
 	}
 
 	public List<Category> getCategories() {
+		if(categories == null) {
+			return new ArrayList<>();
+		}
 		return categories;
 	}
 

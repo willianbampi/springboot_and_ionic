@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="CITY")
+@Table(name = "CITY")
 public class City implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -23,7 +23,7 @@ public class City implements Serializable {
 	private String name;
 	
 	@ManyToOne
-	@JoinColumn(name="FEDERATIVE_UNITY_ID")
+	@JoinColumn(name = "FEDERATIVE_UNITY_ID")
 	private FederativeUnity federativeUnity;
 	
 	public City() {

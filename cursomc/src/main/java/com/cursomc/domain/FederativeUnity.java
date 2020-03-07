@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="FEDERATIVE_UNITY")
+@Table(name = "FEDERATIVE_UNITY")
 public class FederativeUnity implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -53,6 +53,9 @@ public class FederativeUnity implements Serializable {
 	}
 
 	public List<City> getCities() {
+		if(cities == null) {
+			return new ArrayList<>();
+		}
 		return cities;
 	}
 
