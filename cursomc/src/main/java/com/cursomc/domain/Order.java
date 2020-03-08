@@ -17,9 +17,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "ORDER")
+@Table(name = "ORDER_TABLE")
 public class Order implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -28,6 +30,7 @@ public class Order implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
 	
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "order")

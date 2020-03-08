@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.cursomc.domain.enums.PaymentStatus;
 
@@ -13,7 +15,10 @@ public class SlipPayment extends Payment {
 	
 	private static final long serialVersionUID = 1L;
 	
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date expirationDate;
+	
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date paymentDate;
 	
 	public SlipPayment() {
