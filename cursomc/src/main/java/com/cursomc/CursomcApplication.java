@@ -70,6 +70,12 @@ public class CursomcApplication implements CommandLineRunner {
 		
 		Category category1 = new Category(null, "Informática");
 		Category category2 = new Category(null, "Escritório");
+		Category category3 = new Category(null, "Acessórios");
+		Category category4 = new Category(null, "Cama, Mesa e Banho");
+		Category category5 = new Category(null, "Roupas");
+		Category category6 = new Category(null, "Feminino");
+		Category category7 = new Category(null, "Masculino");
+		Category category8 = new Category(null, "Calçados");
 		
 		Product product1 = new Product(null, "Computador", 2000.00);
 		Product product2 = new Product(null, "Impressora", 800.00);
@@ -82,7 +88,7 @@ public class CursomcApplication implements CommandLineRunner {
 		product2.getCategories().addAll(Arrays.asList(category1, category2));
 		product3.getCategories().addAll(Arrays.asList(category2));
 		
-		categoryRepository.saveAll(Arrays.asList(category1, category2));
+		categoryRepository.saveAll(Arrays.asList(category1, category2, category3, category4, category5, category6, category7, category8));
 		productRepository.saveAll(Arrays.asList(product1, product2, product3));
 		
 		FederativeUnity federativeUnity1 = new FederativeUnity(null, "Minas Gerais");
