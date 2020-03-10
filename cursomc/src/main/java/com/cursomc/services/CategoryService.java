@@ -24,5 +24,10 @@ public class CategoryService {
 		category.setId(null);
 		return rep.save(category);
 	}
+	
+	public Category update(Category category) {
+		findById(category.getId());
+		return rep.save(category);
+	}
 
 }
