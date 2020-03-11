@@ -19,6 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.cursomc.domain.Client;
 import com.cursomc.dto.ClientDTO;
+import com.cursomc.dto.NewClientDTO;
 import com.cursomc.services.ClientService;
 
 @RestController
@@ -35,8 +36,8 @@ public class ClientResource {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> insert(@Valid @RequestBody ClientDTO clientDto){
-		Client client = service.fromDto(clientDto);
+	public ResponseEntity<Void> insert(@Valid @RequestBody NewClientDTO newClientDto){
+		Client client = service.fromDto(newClientDto);
 		client = service.insert(client);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(client.getId()).toUri();
 		return ResponseEntity.created(uri).build();
