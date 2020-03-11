@@ -55,7 +55,7 @@ public class ClientService {
 		try {
 			rep.deleteById(id);
 		} catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityException("Não é possível excluir um cliente pois existem relacionamentos vinculados.");
+			throw new DataIntegrityException("Não é possível excluir o cliente pois existe(m) pedido(s) vinculado(s).");
 		}
 	}
 	
