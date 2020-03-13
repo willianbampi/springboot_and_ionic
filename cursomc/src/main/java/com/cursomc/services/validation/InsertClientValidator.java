@@ -36,6 +36,7 @@ public class InsertClientValidator implements ConstraintValidator<InsertClient, 
 		}
 		
 		Client client = rep.findByEmail(newClientDTO.getEmail());
+		
 		if(client != null) {
 			list.add(new FieldMessage("email", "Email já existente."));
 		}
