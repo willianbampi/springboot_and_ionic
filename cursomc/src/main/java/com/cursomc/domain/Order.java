@@ -69,6 +69,22 @@ public class Order implements Serializable {
 		}
 		return productList;
 	}
+	
+	public double getOrderAmountWithDiscount() {
+		double result = 0.0;
+		for(OrderItem orderItem : items) {
+			result += orderItem.getAmountWithDiscount();
+		}
+		return result;
+	}
+	
+	public double getOrderAmountWithoutDiscount() {
+		double result = 0.0;
+		for(OrderItem orderItem : items) {
+			result += orderItem.getAmountWithoutDiscount();
+		}
+		return result;
+	}
 
 	public Integer getId() {
 		return id;
