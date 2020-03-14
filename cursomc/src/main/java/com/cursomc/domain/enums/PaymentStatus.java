@@ -2,7 +2,7 @@ package com.cursomc.domain.enums;
 
 public enum PaymentStatus {
 	
-	PENDETE(1, "Pendente"),
+	PENDENTE(1, "Pendente"),
 	QUITADO(2, "Quitado"),
 	CANCELADO(3, "Cancelado");
 	

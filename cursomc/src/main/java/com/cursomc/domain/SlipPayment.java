@@ -9,9 +9,11 @@ import javax.persistence.TemporalType;
 
 import com.cursomc.domain.enums.PaymentStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 @Entity
 @Table(name = "SLIP_PAYMENT")
+@JsonTypeName("slipPayment")
 public class SlipPayment extends Payment {
 	
 	private static final long serialVersionUID = 1L;

@@ -30,23 +30,11 @@ public class BR {
         return tfn.equals(number + digit1 + digit2);
     }
 
-    /**
-     * Valida CPF
-     *
-     * @param ssn
-     * @return
-     */
     public static boolean isValidCPF(String ssn) {
         if (ssn == null || !ssn.matches("\\d{11}") || ssn.matches(ssn.charAt(0) + "{11}")) return false;
         return checkEquals(ssn, 9, WEIGHT_SSN);
     }
 
-    /**
-     * Valida CNPJ
-     *
-     * @param tfn
-     * @return
-     */
     public static boolean isValidCNPJ(String tfn) {
         if (tfn == null || !tfn.matches("\\d{14}") || tfn.matches(tfn.charAt(0) + "{14}")) return false;
         return checkEquals(tfn, 12, WEIGHT_TFN);

@@ -4,9 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 import com.cursomc.domain.enums.PaymentStatus;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 @Entity
 @Table(name = "CREDIT_CARD_PAYMENT")
+@JsonTypeName("creditCardPayment")
 public class CreditCardPayment extends Payment {
 	
 	private static final long serialVersionUID = 1L;

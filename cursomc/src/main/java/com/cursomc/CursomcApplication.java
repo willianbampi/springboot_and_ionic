@@ -144,7 +144,7 @@ public class CursomcApplication implements CommandLineRunner {
 		Payment payment1 = new CreditCardPayment(null, PaymentStatus.QUITADO, order1, 6); 
 		order1.setPayment(payment1);
 		
-		Payment payment2 = new SlipPayment(null, PaymentStatus.PENDETE, order2, sdf.parse("20/10/2017 00:00"), null);
+		Payment payment2 = new SlipPayment(null, PaymentStatus.PENDENTE, order2, sdf.parse("20/10/2017 00:00"), null);
 		order2.setPayment(payment2);
 		
 		client1.getOrders().addAll(Arrays.asList(order1, order2));
