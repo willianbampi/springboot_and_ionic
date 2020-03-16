@@ -1,10 +1,13 @@
 package com.cursomc.domain;
 
 import java.io.Serializable;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -162,4 +165,28 @@ public class Order implements Serializable {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		NumberFormat numberFormat = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss"); 
+		StringBuilder builder = new StringBuilder();
+		builder.append("Pedido número: ");
+		builder.append(getId());
+		builder.append(", Data: ");
+		builder.append(simpleDateFormat.format(getDate()));
+		builder.append(", Cliente: ");
+		builder.append(getClient().getName());
+		builder.append(", Situação do pagamento: ");
+		builder.append(getPayment().getPaymentStatus().getDescription());
+		builder.append("\nDetalhes:\n");
+		for(OrderItem orderItem : getItems()) {
+			builder.append(orderItem.toString());
+		}
+		builder.append("Valor total sem desconto: ");
+		builder.append(numberFormat.format(getOrderAmountWithoutDiscount()));
+		builder.append(" - Valor total com desconto: ");
+		builder.append(numberFormat.format(getOrderAmountWithDiscount()));
+		return builder.toString();
+	}
+	
 }

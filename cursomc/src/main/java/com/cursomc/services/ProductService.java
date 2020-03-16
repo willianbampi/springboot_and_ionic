@@ -30,11 +30,8 @@ public class ProductService {
 	}
 	
 	public Page<Product> search(String name, List<Integer> ids, Integer page, Integer linesPerPage, String direction, String orderBy){
-		
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
-		
 		List<Category> categories = categoryRepository.findAllById(ids);
-		
 		return rep.findDistinctByNameContainingAndCategoriesIn(name, categories, pageRequest);
 	}
 

@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cursomc.domain.Order;
 import com.cursomc.domain.OrderItem;
@@ -34,14 +35,20 @@ public class OrderService {
 	@Autowired
 	private OrderItemRepository orderItemRepository;
 	
+	@Autowired
+	private ClientService clientService;
+	
 	public Order findById(Integer id) {
 		Optional<Order> order = rep.findById(id);
 		return order.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Order.class.getName()));
 	}
 	
+	@Transactional
 	public Order insert(Order order) {
 		order.setId(null);
 		order.setDate(new Date());
+		
+		order.setClient(clientService.findById(order.getClient().getId()));
 		
 		order.getPayment().setPaymentStatus(PaymentStatus.PENDENTE);
 		order.getPayment().setOrder(order);
@@ -56,10 +63,13 @@ public class OrderService {
 		
 		for(OrderItem orderItem : order.getItems()) {
 			orderItem.setDiscount(0.00);
-			orderItem.setPrice(productService.findById(orderItem.getProduct().getId()).getPrice());
+			orderItem.setProduct(productService.findById(orderItem.getProduct().getId()));
+			orderItem.setPrice(orderItem.getProduct().getPrice());
 			orderItem.setOrder(order);
 		}
 		orderItemRepository.saveAll(order.getItems());
+		
+		System.out.println(order);
 		
 		return order;
 	}
