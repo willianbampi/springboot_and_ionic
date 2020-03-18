@@ -23,6 +23,9 @@ public class NewClientDTO implements Serializable {
 	private String email;
 	
 	@NotEmpty(message = "Preenchimento obrigatório.")
+	private String password;
+	
+	@NotEmpty(message = "Preenchimento obrigatório.")
 	private String cpfOrCnpj;
 	
 	private Integer type;
@@ -65,6 +68,14 @@ public class NewClientDTO implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getCpfOrCnpj() {
@@ -154,5 +165,5 @@ public class NewClientDTO implements Serializable {
 	public void setCityId(Integer cityId) {
 		this.cityId = cityId;
 	}
-	
+
 }

@@ -8,6 +8,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,6 +31,9 @@ public class ClientService {
 	
 	@Autowired
 	AddressRepository addressRepository;
+	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	public Client findById(Integer id) {
 		Optional<Client> client = rep.findById(id);
@@ -69,11 +73,11 @@ public class ClientService {
  	}
 	
 	public Client fromDto(ClientDTO clientDto) {
-		return new Client(clientDto.getId(), clientDto.getName(), clientDto.getEmail(), null, null);
+		return new Client(clientDto.getId(), clientDto.getName(), clientDto.getEmail(), null, null, null);
 	}
 	
 	public Client fromDto(NewClientDTO newClientDto) {
-		Client client = new Client(null, newClientDto.getName(), newClientDto.getEmail(), newClientDto.getCpfOrCnpj(), ClientType.toEnum(newClientDto.getType()));
+		Client client = new Client(null, newClientDto.getName(), newClientDto.getEmail(), bCryptPasswordEncoder.encode(newClientDto.getPassword()), newClientDto.getCpfOrCnpj(), ClientType.toEnum(newClientDto.getType()));
 		City city = new City(newClientDto.getCityId(), null, null);
 		Address address = new Address(null, newClientDto.getStreet(), newClientDto.getNumber(), newClientDto.getComplement(), newClientDto.getNeighborhood(), newClientDto.getCep(), client, city);
 		client.getAddresses().add(address);

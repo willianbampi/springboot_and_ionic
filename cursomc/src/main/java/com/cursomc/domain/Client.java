@@ -35,6 +35,9 @@ public class Client implements Serializable{
 	@Column(unique = true)
 	private String email;
 	
+	@JsonIgnore
+	private String password;
+	
 	private String cpfOrCnpj;
 	private Integer type;
 	
@@ -53,11 +56,12 @@ public class Client implements Serializable{
 		
 	}
 
-	public Client(Integer id, String name, String email, String cpfOrCnpj, ClientType type) {
+	public Client(Integer id, String name, String email, String password, String cpfOrCnpj, ClientType type) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.email = email;
+		this.password = password;
 		this.cpfOrCnpj = cpfOrCnpj;
 		this.type = (type == null) ? null : type.getId();
 	}
@@ -84,6 +88,14 @@ public class Client implements Serializable{
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getCpfOrCnpj() {
