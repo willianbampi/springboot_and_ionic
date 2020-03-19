@@ -170,21 +170,21 @@ public class Order implements Serializable {
 		NumberFormat numberFormat = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss"); 
 		StringBuilder builder = new StringBuilder();
-		builder.append("Pedido número: ");
+		builder.append("Order number: ");
 		builder.append(getId());
-		builder.append(", Data: ");
+		builder.append(", Date: ");
 		builder.append(simpleDateFormat.format(getDate()));
-		builder.append(", Cliente: ");
+		builder.append(", Client: ");
 		builder.append(getClient().getName());
-		builder.append(", Situação do pagamento: ");
+		builder.append(", Payment Status: ");
 		builder.append(getPayment().getPaymentStatus().getDescription());
-		builder.append("\nDetalhes:\n");
+		builder.append("\nDetails:\n");
 		for(OrderItem orderItem : getItems()) {
 			builder.append(orderItem.toString());
 		}
-		builder.append("Valor total sem desconto: ");
+		builder.append("Order amount without discount: ");
 		builder.append(numberFormat.format(getOrderAmountWithoutDiscount()));
-		builder.append(" - Valor total com desconto: ");
+		builder.append(" - Order amount with discount: ");
 		builder.append(numberFormat.format(getOrderAmountWithDiscount()));
 		return builder.toString();
 	}

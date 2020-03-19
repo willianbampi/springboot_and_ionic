@@ -20,11 +20,11 @@
 				<th>Subtotal com desconto</th>
 			</tr>
 			<tr th:each="item : ${order.items}">
-				<td th:text="${item.product.name}">nome</td>
-				<td th:text="${item.quantity}">quantidade</td>
-				<td th:text="${#numbers.formatDecimal(item.price, 0, 'POINT', 2, 'COMMA')}">preco</td>
-				<td th:text="${#numbers.formatDecimal(item.amountWithoutDiscount, 0, 'POINT', 2, 'COMMA')}">subTotal sem desconto</td>
-				<td th:text="${#numbers.formatDecimal(item.amountWithDiscount, 0, 'POINT', 2, 'COMMA')}">subTotal com desconto</td>
+				<td th:text="${item.product.name}">Nome</td>
+				<td th:text="${item.quantity}">Quantidade</td>
+				<td th:text="${#numbers.formatDecimal(item.price, 0, 'POINT', 2, 'COMMA')}">Preco</td>
+				<td th:text="${#numbers.formatDecimal(item.amountWithoutDiscount, 0, 'POINT', 2, 'COMMA')}">Subtotal sem desconto</td>
+				<td th:text="${#numbers.formatDecimal(item.amountWithDiscount, 0, 'POINT', 2, 'COMMA')}">Subtotal com desconto</td>
 			</tr>
 		</table>
 		<p>Valor total sem desconto: <span th:text="${#numbers.formatDecimal(order.orderAmountWithoutDiscount, 0, 'POINT', 2, 'COMMA')}"></span></p>

@@ -36,7 +36,7 @@ public abstract class AbstractEmailService implements EmailService {
 		SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
 		simpleMailMessage.setTo(order.getClient().getEmail());
 		simpleMailMessage.setFrom(sender);
-		simpleMailMessage.setSubject("Pedido confirmado! Código " + order.getId());
+		simpleMailMessage.setSubject("Confirmation Order! Id: " + order.getId());
 		simpleMailMessage.setSentDate(new Date(System.currentTimeMillis()));
 		simpleMailMessage.setText(order.toString());
 		return simpleMailMessage;
@@ -63,7 +63,7 @@ public abstract class AbstractEmailService implements EmailService {
 		MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
 		mimeMessageHelper.setTo(order.getClient().getEmail());
 		mimeMessageHelper.setFrom(sender);
-		mimeMessageHelper.setSubject("Pedido confirmado! Código " + order.getId());
+		mimeMessageHelper.setSubject("Confirmation Order! Id: " + order.getId());
 		mimeMessageHelper.setSentDate(new Date(System.currentTimeMillis()));
 		mimeMessageHelper.setText(htmlFromTemplateOrder(order), true);
 		return mimeMessage;

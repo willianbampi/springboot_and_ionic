@@ -26,7 +26,7 @@ public class ProductService {
 	
 	public Product findById(Integer id) {
 		Optional<Product> order = rep.findById(id);
-		return order.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Product.class.getName()));
+		return order.orElseThrow(() -> new ObjectNotFoundException("Object not found! Id: " + id + ", Type: " + Product.class.getName()));
 	}
 	
 	public Page<Product> search(String name, List<Integer> ids, Integer page, Integer linesPerPage, String direction, String orderBy){

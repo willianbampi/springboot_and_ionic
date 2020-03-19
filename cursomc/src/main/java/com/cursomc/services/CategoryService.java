@@ -25,7 +25,7 @@ public class CategoryService {
 	
 	public Category findById(Integer id) {
 		Optional<Category> category = rep.findById(id);
-		return category.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Category.class.getName()));
+		return category.orElseThrow(() -> new ObjectNotFoundException("Object not found! Id: " + id + ", Type: " + Category.class.getName()));
 	}
 	
 	@Transactional
@@ -45,7 +45,7 @@ public class CategoryService {
 		try {
 			rep.deleteById(id);
 		} catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityException("Não é possível excluir uma categoria que contém produtos.");
+			throw new DataIntegrityException("It's not possible delete a category that contains products.");
 		}
 	}
 	

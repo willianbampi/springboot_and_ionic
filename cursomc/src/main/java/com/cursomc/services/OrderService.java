@@ -43,7 +43,7 @@ public class OrderService {
 	
 	public Order findById(Integer id) {
 		Optional<Order> order = rep.findById(id);
-		return order.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Order.class.getName()));
+		return order.orElseThrow(() -> new ObjectNotFoundException("Object not found! Id: " + id + ", Type: " + Order.class.getName()));
 	}
 	
 	@Transactional

@@ -124,13 +124,13 @@ public class OrderItem implements Serializable{
 		NumberFormat numberFormat = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
 		StringBuilder builder = new StringBuilder();
 		builder.append(getProduct().getName());
-		builder.append(", Qte: ");
+		builder.append(", Quantity: ");
 		builder.append(getQuantity());
-		builder.append(", Preço unitário: ");
+		builder.append(", Price: ");
 		builder.append(numberFormat.format(getPrice()));
-		builder.append(", Subtotal sem desconto: ");
+		builder.append(", Item Amount without discount: ");
 		builder.append(numberFormat.format(getAmountWithoutDiscount()));
-		builder.append(", Subtotal com desconto: ");
+		builder.append(", Item Amount with discount: ");
 		builder.append(numberFormat.format(getAmountWithDiscount()));
 		builder.append("\n");
 		return builder.toString();

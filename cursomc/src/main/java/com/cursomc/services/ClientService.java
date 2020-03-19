@@ -16,10 +16,13 @@ import com.cursomc.domain.Address;
 import com.cursomc.domain.City;
 import com.cursomc.domain.Client;
 import com.cursomc.domain.enums.ClientType;
+import com.cursomc.domain.enums.Profile;
 import com.cursomc.dto.ClientDTO;
 import com.cursomc.dto.NewClientDTO;
 import com.cursomc.repositories.AddressRepository;
 import com.cursomc.repositories.ClientRepository;
+import com.cursomc.security.UserSpringSecurity;
+import com.cursomc.services.exceptions.AuthorizationException;
 import com.cursomc.services.exceptions.DataIntegrityException;
 import com.cursomc.services.exceptions.ObjectNotFoundException;
 
@@ -36,8 +39,14 @@ public class ClientService {
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	public Client findById(Integer id) {
+		
+		UserSpringSecurity userSpringSecurity = UserService.authenticated();
+		if(userSpringSecurity == null || !userSpringSecurity.hasRole(Profile.ADMIN) && !id.equals(userSpringSecurity.getId())) {
+			throw new AuthorizationException("Access denied.");
+		}
+		
 		Optional<Client> client = rep.findById(id);
-		return client.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Client.class.getName()));
+		return client.orElseThrow(() -> new ObjectNotFoundException("Object not found! Id: " + id + ", Type: " + Client.class.getName()));
 	}
 	
 	@Transactional
@@ -59,7 +68,7 @@ public class ClientService {
 		try {
 			rep.deleteById(id);
 		} catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityException("Não é possível excluir o cliente pois existe(m) pedido(s) vinculado(s).");
+			throw new DataIntegrityException("It's not possible delete a client that contains orders.");
 		}
 	}
 	

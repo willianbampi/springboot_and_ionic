@@ -30,7 +30,7 @@ public enum ClientType {
 				return x;
 			}
 		}
-		throw new IllegalArgumentException("Id inválido: " + id);
+		throw new IllegalArgumentException("Invalid Id: " + id);
 	}
 
 }

@@ -28,17 +28,17 @@ public class InsertClientValidator implements ConstraintValidator<InsertClient, 
 		List<FieldMessage> list = new ArrayList<>();
 		
 		if(newClientDTO.getType().equals(ClientType.PESSOAFISICA.getId()) && !BR.isValidCPF(newClientDTO.getCpfOrCnpj())) {
-			list.add(new FieldMessage("cpfOrCnpj", "CPF inválido."));
+			list.add(new FieldMessage("cpfOrCnpj", "Invalid CFP."));
 		}
 		
 		if(newClientDTO.getType().equals(ClientType.PESSOAJURIDICA.getId()) && !BR.isValidCNPJ(newClientDTO.getCpfOrCnpj())) {
-			list.add(new FieldMessage("cpfOrCnpj", "CNPJ inválido."));
+			list.add(new FieldMessage("cpfOrCnpj", "Invalid CNPJ."));
 		}
 		
 		Client client = rep.findByEmail(newClientDTO.getEmail());
 		
 		if(client != null) {
-			list.add(new FieldMessage("email", "Email já existente."));
+			list.add(new FieldMessage("email", "Email already exist."));
 		}
 		
 		for (FieldMessage e : list) {
