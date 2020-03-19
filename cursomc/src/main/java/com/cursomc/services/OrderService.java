@@ -4,9 +4,13 @@ import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cursomc.domain.Client;
 import com.cursomc.domain.Order;
 import com.cursomc.domain.OrderItem;
 import com.cursomc.domain.SlipPayment;
@@ -14,6 +18,8 @@ import com.cursomc.domain.enums.PaymentStatus;
 import com.cursomc.repositories.OrderItemRepository;
 import com.cursomc.repositories.OrderRepository;
 import com.cursomc.repositories.PaymentRepository;
+import com.cursomc.security.UserSpringSecurity;
+import com.cursomc.services.exceptions.AuthorizationException;
 import com.cursomc.services.exceptions.ObjectNotFoundException;
 import com.cursomc.services.utils.SlipService;
 
@@ -77,5 +83,15 @@ public class OrderService {
 		
 		return order;
 	}
+	
+	public Page<Order> findPage(Integer page, Integer linesPerPage, String direction, String orderBy){
+		UserSpringSecurity userSpringSecurity = UserService.authenticated();
+		if(userSpringSecurity == null) {
+			throw new AuthorizationException("Access denied.");
+		}
+		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
+		Client client = clientService.findById(userSpringSecurity.getId());
+		return rep.findByClient(client, pageRequest);
+ 	}
 
 }
