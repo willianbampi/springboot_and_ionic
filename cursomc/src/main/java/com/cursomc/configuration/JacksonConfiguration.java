@@ -1,4 +1,4 @@
-package com.cursomc.config;
+package com.cursomc.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,7 +9,7 @@ import com.cursomc.domain.SlipPayment;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Configuration
-public class JacksonConfig {
+public class JacksonConfiguration {
 	
 	@Bean
 	public Jackson2ObjectMapperBuilder objectMapperBuilder() {

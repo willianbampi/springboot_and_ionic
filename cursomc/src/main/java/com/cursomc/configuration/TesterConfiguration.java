@@ -1,4 +1,4 @@
-package com.cursomc.config;
+package com.cursomc.configuration;
 
 import java.text.ParseException;
 
@@ -12,7 +12,7 @@ import com.cursomc.services.MockEmailService;
 
 @Configuration
 @Profile("test")
-public class TestConfig {
+public class TesterConfiguration {
 	
 	@Autowired
 	private DatabaseService databaseService;

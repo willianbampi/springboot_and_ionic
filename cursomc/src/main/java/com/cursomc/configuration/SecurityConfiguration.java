@@ -1,4 +1,4 @@
-package com.cursomc.config;
+package com.cursomc.configuration;
 
 import java.util.Arrays;
 
@@ -26,7 +26,7 @@ import com.cursomc.security.utils.JWTUtil;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	private Environment environment;

@@ -1,4 +1,4 @@
-package com.cursomc.config;
+package com.cursomc.configuration;
 
 import java.text.ParseException;
 
@@ -13,7 +13,7 @@ import com.cursomc.services.SmtpEmailService;
 
 @Configuration
 @Profile("dev")
-public class DevConfig {
+public class DeveloperConfiguration {
 	
 	@Autowired
 	private DatabaseService databaseService;
