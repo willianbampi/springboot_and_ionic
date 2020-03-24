@@ -17,13 +17,13 @@ import com.cursomc.resources.utils.URL;
 import com.cursomc.services.ProductService;
 
 @RestController
-@RequestMapping(value="/products")
+@RequestMapping(value = "/products")
 public class ProductResource {
 	
 	@Autowired
 	private ProductService service;
 	
-	@RequestMapping(value="/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Product> findById(@PathVariable Integer id) {
 		Product product = service.findById(id);
 		return ResponseEntity.ok().body(product);

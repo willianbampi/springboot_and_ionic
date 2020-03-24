@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.cursomc.domain.Client;
@@ -24,13 +25,13 @@ import com.cursomc.dto.NewClientDTO;
 import com.cursomc.services.ClientService;
 
 @RestController
-@RequestMapping(value="/clients")
+@RequestMapping(value = "/clients")
 public class ClientResource {
 	
 	@Autowired
 	ClientService service;
 	
-	@RequestMapping(value="/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Client> findById(@PathVariable Integer id) {
 		Client client = service.findById(id);
 		return ResponseEntity.ok().body(client);
@@ -44,7 +45,7 @@ public class ClientResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
-	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Client> update(@Valid @RequestBody ClientDTO clientDto, @PathVariable Integer id){
 		Client client = service.fromDto(clientDto);
 		client.setId(id);
@@ -53,7 +54,7 @@ public class ClientResource {
 	}
 	
 	@PreAuthorize("hasAnyRole('ADMIN')")
-	@RequestMapping(value="/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> deleteById(@PathVariable Integer id) {
 		service.deleteById(id);
 		return ResponseEntity.noContent().build();
@@ -77,6 +78,12 @@ public class ClientResource {
 		Page<Client> pageClient = service.findPage(page, linesPerPage, direction, orderBy);
 		Page<ClientDTO> pageClientDto = pageClient.map(client -> new ClientDTO(client));
 		return ResponseEntity.ok().body(pageClientDto);
+	}
+	
+	@RequestMapping(value = "/picture", method = RequestMethod.POST)
+	public ResponseEntity<Void> uploadProfilePicture(@RequestParam(name = "file") MultipartFile multipartFile){
+		URI uri = service.uploadProfilePicture(multipartFile);
+		return ResponseEntity.created(uri).build();
 	}
 
 }

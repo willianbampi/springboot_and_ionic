@@ -1,5 +1,6 @@
 package com.cursomc.services;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,6 +12,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.cursomc.domain.Address;
 import com.cursomc.domain.City;
@@ -37,6 +39,9 @@ public class ClientService {
 	
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+	@Autowired
+	private AmazonS3Service amazonS3Service;
 	
 	public Client findById(Integer id) {
 		
@@ -103,6 +108,10 @@ public class ClientService {
 	private void updateData(Client newClient, Client client) {
 		newClient.setName(client.getName());
 		newClient.setEmail(client.getEmail());
+	}
+	
+	public URI uploadProfilePicture(MultipartFile multipartFile) {
+		return amazonS3Service.uploadFile(multipartFile);
 	}
 
 }

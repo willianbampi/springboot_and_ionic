@@ -23,13 +23,13 @@ import com.cursomc.dto.CategoryDTO;
 import com.cursomc.services.CategoryService;
 
 @RestController
-@RequestMapping(value="/categories")
+@RequestMapping(value = "/categories")
 public class CategoryResource {
 	
 	@Autowired
 	private CategoryService service;
 	
-	@RequestMapping(value="/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Category> findById(@PathVariable Integer id) {
 		Category category = service.findById(id);
 		return ResponseEntity.ok().body(category);
@@ -45,7 +45,7 @@ public class CategoryResource {
 	}
 	
 	@PreAuthorize("hasAnyRole('ADMIN')")
-	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Category> update(@Valid @RequestBody CategoryDTO categoryDto, @PathVariable Integer id){
 		Category category = service.fromDto(categoryDto);
 		category.setId(id);
@@ -54,7 +54,7 @@ public class CategoryResource {
 	}
 	
 	@PreAuthorize("hasAnyRole('ADMIN')")
-	@RequestMapping(value="/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> deleteById(@PathVariable Integer id) {
 		service.deleteById(id);
 		return ResponseEntity.noContent().build();

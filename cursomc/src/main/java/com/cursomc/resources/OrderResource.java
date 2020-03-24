@@ -19,13 +19,13 @@ import com.cursomc.domain.Order;
 import com.cursomc.services.OrderService;
 
 @RestController
-@RequestMapping(value="/orders")
+@RequestMapping(value = "/orders")
 public class OrderResource {
 	
 	@Autowired
 	private OrderService service;
 	
-	@RequestMapping(value="/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Order> findById(@PathVariable Integer id) {
 		Order order = service.findById(id);
 		return ResponseEntity.ok().body(order);
