@@ -111,7 +111,18 @@ public class ClientService {
 	}
 	
 	public URI uploadProfilePicture(MultipartFile multipartFile) {
-		return amazonS3Service.uploadFile(multipartFile);
+		
+		UserSpringSecurity userSpringSecurity = UserService.authenticated();
+		if(userSpringSecurity == null) {
+			throw new AuthorizationException("Access denied.");
+		}
+		
+		URI uri =  amazonS3Service.uploadFile(multipartFile);
+		Client client = findById(userSpringSecurity.getId());
+		client.setImageURL(uri.toString());
+		rep.save(client);
+		
+		return uri;
 	}
 
 }
