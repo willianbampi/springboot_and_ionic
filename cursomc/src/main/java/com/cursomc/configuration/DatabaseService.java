@@ -86,9 +86,54 @@ public class DatabaseService {
 		Product product8 = new Product(null, "Roçadeira", 800.00);
 		Product product9 = new Product(null, "Abajour", 100.00);
 		Product product10 = new Product(null, "Pendente", 180.00);
-		Product product11 = new Product(null, "Schampoo", 90.00);
+		Product product11 = new Product(null, "Shampoo", 90.00);
+		Product product12 = new Product(null, "Produto 12", 10.00);
+		Product product13 = new Product(null, "Produto 13", 10.00);
+		Product product14 = new Product(null, "Produto 14", 10.00);
+		Product product15 = new Product(null, "Produto 15", 10.00);
+		Product product16 = new Product(null, "Produto 16", 10.00);
+		Product product17 = new Product(null, "Produto 17", 10.00);
+		Product product18 = new Product(null, "Produto 18", 10.00);
+		Product product19 = new Product(null, "Produto 19", 10.00);
+		Product product20 = new Product(null, "Produto 20", 10.00);
+		Product product21 = new Product(null, "Produto 21", 10.00);
+		Product product22 = new Product(null, "Produto 22", 10.00);
+		Product product23 = new Product(null, "Produto 23", 10.00);
+		Product product24 = new Product(null, "Produto 24", 10.00);
+		Product product25 = new Product(null, "Produto 25", 10.00);
+		Product product26 = new Product(null, "Produto 26", 10.00);
+		Product product27 = new Product(null, "Produto 27", 10.00);
+		Product product28 = new Product(null, "Produto 28", 10.00);
+		Product product29 = new Product(null, "Produto 29", 10.00);
+		Product product30 = new Product(null, "Produto 30", 10.00);
+		Product product31 = new Product(null, "Produto 31", 10.00);
+		Product product32 = new Product(null, "Produto 32", 10.00);
+		Product product33 = new Product(null, "Produto 33", 10.00);
+		Product product34 = new Product(null, "Produto 34", 10.00);
+		Product product35 = new Product(null, "Produto 35", 10.00);
+		Product product36 = new Product(null, "Produto 36", 10.00);
+		Product product37 = new Product(null, "Produto 37", 10.00);
+		Product product38 = new Product(null, "Produto 38", 10.00);
+		Product product39 = new Product(null, "Produto 39", 10.00);
+		Product product40 = new Product(null, "Produto 40", 10.00);
+		Product product41 = new Product(null, "Produto 41", 10.00);
+		Product product42 = new Product(null, "Produto 42", 10.00);
+		Product product43 = new Product(null, "Produto 43", 10.00);
+		Product product44 = new Product(null, "Produto 44", 10.00);
+		Product product45 = new Product(null, "Produto 45", 10.00);
+		Product product46 = new Product(null, "Produto 46", 10.00);
+		Product product47 = new Product(null, "Produto 47", 10.00);
+		Product product48 = new Product(null, "Produto 48", 10.00);
+		Product product49 = new Product(null, "Produto 49", 10.00);
+		Product product50 = new Product(null, "Produto 50", 10.00);
 		
-		category1.getProducts().addAll(Arrays.asList(product1, product2, product3));
+		category1.getProducts().addAll(Arrays.asList(product1, product2, product3, product12, product13, product14,
+				                                     product15, product16, product17, product18, product19, product20,
+				                                     product21, product22, product23, product24, product25, product26,
+				                                     product27, product28, product29, product30, product31, product32,
+				                                     product33, product34, product35, product36, product37, product38,
+				                                     product39, product40, product41, product42, product43, product44,
+				                                     product45, product46, product47, product48, product49, product50));
 		category2.getProducts().addAll(Arrays.asList(product2, product4));
 		category3.getProducts().addAll(Arrays.asList(product5, product6));
 		category4.getProducts().addAll(Arrays.asList(product1, product2, product3, product7));
@@ -107,9 +152,52 @@ public class DatabaseService {
 		product9.getCategories().addAll(Arrays.asList(category6));
 		product10.getCategories().addAll(Arrays.asList(category6));
 		product11.getCategories().addAll(Arrays.asList(category7));
+		product12.getCategories().addAll(Arrays.asList(category1));
+		product13.getCategories().addAll(Arrays.asList(category1));
+		product14.getCategories().addAll(Arrays.asList(category1));
+		product15.getCategories().addAll(Arrays.asList(category1));
+		product16.getCategories().addAll(Arrays.asList(category1));
+		product17.getCategories().addAll(Arrays.asList(category1));
+		product18.getCategories().addAll(Arrays.asList(category1));
+		product19.getCategories().addAll(Arrays.asList(category1));
+		product20.getCategories().addAll(Arrays.asList(category1));
+		product21.getCategories().addAll(Arrays.asList(category1));
+		product22.getCategories().addAll(Arrays.asList(category1));
+		product23.getCategories().addAll(Arrays.asList(category1));
+		product24.getCategories().addAll(Arrays.asList(category1));
+		product25.getCategories().addAll(Arrays.asList(category1));
+		product26.getCategories().addAll(Arrays.asList(category1));
+		product27.getCategories().addAll(Arrays.asList(category1));
+		product28.getCategories().addAll(Arrays.asList(category1));
+		product29.getCategories().addAll(Arrays.asList(category1));
+		product30.getCategories().addAll(Arrays.asList(category1));
+		product31.getCategories().addAll(Arrays.asList(category1));
+		product32.getCategories().addAll(Arrays.asList(category1));
+		product33.getCategories().addAll(Arrays.asList(category1));
+		product34.getCategories().addAll(Arrays.asList(category1));
+		product35.getCategories().addAll(Arrays.asList(category1));
+		product36.getCategories().addAll(Arrays.asList(category1));
+		product37.getCategories().addAll(Arrays.asList(category1));
+		product38.getCategories().addAll(Arrays.asList(category1));
+		product39.getCategories().addAll(Arrays.asList(category1));
+		product40.getCategories().addAll(Arrays.asList(category1));
+		product41.getCategories().addAll(Arrays.asList(category1));
+		product42.getCategories().addAll(Arrays.asList(category1));
+		product43.getCategories().addAll(Arrays.asList(category1));
+		product44.getCategories().addAll(Arrays.asList(category1));
+		product45.getCategories().addAll(Arrays.asList(category1));
+		product46.getCategories().addAll(Arrays.asList(category1));
+		product47.getCategories().addAll(Arrays.asList(category1));
+		product48.getCategories().addAll(Arrays.asList(category1));
+		product49.getCategories().addAll(Arrays.asList(category1));
+		product50.getCategories().addAll(Arrays.asList(category1));
 		
 		categoryRepository.saveAll(Arrays.asList(category1, category2, category3, category4, category5, category6, category7, category8));
-		productRepository.saveAll(Arrays.asList(product1, product2, product3, product4, product5,product6, product7, product8, product9, product10, product11));
+		productRepository.saveAll(Arrays.asList(product1, product2, product3, product4, product5,product6, product7, product8, product9, product10, product11,
+				                                product12, product13, product14, product15, product16, product17, product18, product19, product20, product21,
+				                                product22, product23, product24, product25, product26, product27, product28, product29, product30, product31,
+				                                product32, product33, product34, product35, product36, product37, product38, product39, product40, product41,
+				                                product42, product43, product44, product45, product46, product47, product48, product49, product50));
 		
 		FederativeUnity federativeUnity1 = new FederativeUnity(null, "Minas Gerais");
 		FederativeUnity federativeUnity2 = new FederativeUnity(null, "São Paulo");
