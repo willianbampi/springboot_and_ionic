@@ -92,6 +92,23 @@ public class ClientService {
 		return rep.findAll();
 	}
 	
+	
+	
+	public Client findByEmail(String email) {
+		
+		UserSpringSecurity userSpringSecurity = UserService.authenticated();
+		if(userSpringSecurity == null || !userSpringSecurity.hasRole(Profile.ADMIN) && !email.equals(userSpringSecurity.getUsername())) {
+			throw new AuthorizationException("Access denied.");
+		}
+		
+		Client client = rep.findByEmail(email);
+		if(client == null) {
+			throw new ObjectNotFoundException("Object not found! Email: " + email + ", Type: " + Client.class.getName());
+		}
+		
+		return client;
+	}
+	
 	public Page<Client> findPage(Integer page, Integer linesPerPage, String direction, String orderBy){
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return rep.findAll(pageRequest);
