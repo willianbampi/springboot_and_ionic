@@ -1,10 +1,12 @@
 package com.cursomc.services;
 
+import java.awt.image.BufferedImage;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -42,6 +44,12 @@ public class ClientService {
 	
 	@Autowired
 	private AmazonS3Service amazonS3Service;
+	
+	@Autowired
+	private ImageService imageService;
+	
+	@Value("${img.prefix.client.profile")
+	private String prefix;
 	
 	public Client findById(Integer id) {
 		
@@ -117,12 +125,9 @@ public class ClientService {
 			throw new AuthorizationException("Access denied.");
 		}
 		
-		URI uri =  amazonS3Service.uploadFile(multipartFile);
-		Client client = findById(userSpringSecurity.getId());
-		client.setImageURL(uri.toString());
-		rep.save(client);
-		
-		return uri;
+		BufferedImage jpgImage = imageService.getJpgImageFromFile(multipartFile);
+		String fileName = prefix + userSpringSecurity.getId() + ".jpg";
+		return amazonS3Service.uploadFile(imageService.getInputStream(jpgImage, "jpg"), fileName, "image");
 	}
 
 }
