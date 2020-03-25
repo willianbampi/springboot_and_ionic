@@ -51,6 +51,9 @@ public class ClientService {
 	@Value("${img.prefix.client.profile")
 	private String prefix;
 	
+	@Value("${img.profile.size")
+	private Integer sizeImage;
+	
 	public Client findById(Integer id) {
 		
 		UserSpringSecurity userSpringSecurity = UserService.authenticated();
@@ -126,6 +129,8 @@ public class ClientService {
 		}
 		
 		BufferedImage jpgImage = imageService.getJpgImageFromFile(multipartFile);
+		jpgImage = imageService.cropSquare(jpgImage);
+		jpgImage = imageService.resize(jpgImage, sizeImage);
 		String fileName = prefix + userSpringSecurity.getId() + ".jpg";
 		return amazonS3Service.uploadFile(imageService.getInputStream(jpgImage, "jpg"), fileName, "image");
 	}
