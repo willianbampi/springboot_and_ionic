@@ -48,10 +48,10 @@ public class ClientService {
 	@Autowired
 	private ImageService imageService;
 	
-	@Value("${img.prefix.client.profile")
+	@Value("${img.prefix.client.profile}")
 	private String prefix;
 	
-	@Value("${img.profile.size")
+	@Value("${img.profile.size}")
 	private Integer sizeImage;
 	
 	public Client findById(Integer id) {
