@@ -17,6 +17,8 @@ import com.cursomc.dto.FederativeUnityDTO;
 import com.cursomc.services.CityService;
 import com.cursomc.services.FederativeUnityService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping(value = "/federativeunities")
 public class FederativeUnityResource {
@@ -27,6 +29,7 @@ public class FederativeUnityResource {
 	@Autowired
 	private CityService cityService;
 	
+	@ApiOperation(value="Retorna todos estados")
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<FederativeUnityDTO>> findAll(){
 		List<FederativeUnity> FederativeUnityList = federativeUnityService.findAll();
@@ -34,6 +37,7 @@ public class FederativeUnityResource {
 		return ResponseEntity.ok().body(FederativeUnityListDTO);
 	}
 	
+	@ApiOperation(value="Retorna todas cidades por id de estado")
 	@RequestMapping(value = "/{federativeUnityId}/cities", method = RequestMethod.GET)
 	public ResponseEntity<List<CityDTO>> findCities(@PathVariable Integer federativeUnityId){
 		List<City> cityList = cityService.findByFederativeUnity(federativeUnityId);

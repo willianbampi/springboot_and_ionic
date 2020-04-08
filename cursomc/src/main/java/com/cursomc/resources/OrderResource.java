@@ -18,6 +18,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.cursomc.domain.Order;
 import com.cursomc.services.OrderService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping(value = "/orders")
 public class OrderResource {
@@ -25,12 +27,14 @@ public class OrderResource {
 	@Autowired
 	private OrderService service;
 	
+	@ApiOperation(value="Busca pedido por id")
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Order> findById(@PathVariable Integer id) {
 		Order order = service.findById(id);
 		return ResponseEntity.ok().body(order);
 	}
 	
+	@ApiOperation(value="Insere pedido")
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody Order order){
 		order = service.insert(order);
@@ -38,6 +42,7 @@ public class OrderResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
+	@ApiOperation(value="Retorna os pedidos  com paginação")
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<Page<Order>> findPage(
 			@RequestParam(value = "page", defaultValue = "0") Integer page, 

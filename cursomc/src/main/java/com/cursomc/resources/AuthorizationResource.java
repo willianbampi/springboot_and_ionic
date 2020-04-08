@@ -16,6 +16,8 @@ import com.cursomc.security.utils.JWTUtil;
 import com.cursomc.services.AuthorizationService;
 import com.cursomc.services.UserService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping(value = "/auth")
 public class AuthorizationResource {
@@ -26,6 +28,7 @@ public class AuthorizationResource {
 	@Autowired
 	private AuthorizationService authorizationService;
 	
+	@ApiOperation(value="Realiza o refresh do token")
 	@RequestMapping(value = "/refresh_token", method = RequestMethod.POST)
 	public ResponseEntity<Void> refreshToken(HttpServletResponse response){
 		UserSpringSecurity userSpringSecurity = UserService.authenticated();
@@ -35,6 +38,7 @@ public class AuthorizationResource {
 		return ResponseEntity.noContent().build();
 	}
 	
+	@ApiOperation(value="Envia email com nova senha")
 	@RequestMapping(value = "/forgot", method = RequestMethod.POST)
 	public ResponseEntity<Void> forgotPassword(@Valid@RequestBody EmailDTO emailDTO){
 		authorizationService.sendNewPassword(emailDTO.getEmail());
